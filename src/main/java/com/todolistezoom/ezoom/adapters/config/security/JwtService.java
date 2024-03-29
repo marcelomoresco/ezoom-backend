@@ -27,7 +27,7 @@ public class JwtService {
                 .collect(Collectors.joining(" "));
 
         var claims = JwtClaimsSet.builder()
-                .issuer("spring-security-jwt")
+                .issuer("ezoom")
                 .issuedAt(now)
                 .subject(authentication.getName())
                 .claim("scope", scopes)
