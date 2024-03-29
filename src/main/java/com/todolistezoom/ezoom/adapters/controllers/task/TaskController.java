@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@RestController("/tasks")
-@RequestMapping()
+@RestController()
+@RequestMapping("/tasks")
 public class TaskController {
     private final TaskService taskService;
     private final TaskMapperDomainAndDTO taskMapperDomainAndDTO;
@@ -34,7 +34,7 @@ public class TaskController {
     public ResponseEntity<Void> createTask(@RequestBody TaskRequestDTO taskRequestDTO){
         Task task = taskMapperDomainAndDTO.convertRequestToDomain(taskRequestDTO);
         taskService.createTask(task);
-        return new ResponseEntity(task, HttpStatus.CREATED);
+        return new ResponseEntity(task, HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update/{id}")
@@ -42,6 +42,11 @@ public class TaskController {
         Task task = taskMapperDomainAndDTO.convertRequestToDomain(taskRequestDTO);
         task.setId(id);
         taskService.updateTask(task);
-        return new ResponseEntity(task, HttpStatus.CREATED);
+        return new ResponseEntity(task, HttpStatus.NO_CONTENT);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable UUID id){
+        taskService.deleteTask(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

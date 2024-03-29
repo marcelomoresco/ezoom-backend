@@ -38,4 +38,8 @@ public class TaskService {
         taskRepository.save(existingTask);
     }
 
+    public void deleteTask(UUID id) {
+        taskRepository.deleteById(id);
+    }
+
 }

@@ -13,5 +13,6 @@ public class User {
     @Id
     private String username;
     private String password;
+    @Column(name = "EMAIL")
     private String email;
 }
