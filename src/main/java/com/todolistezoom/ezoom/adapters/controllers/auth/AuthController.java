@@ -5,6 +5,7 @@ import com.todolistezoom.ezoom.adapters.dto.request.UserRequestDTO;
 import com.todolistezoom.ezoom.adapters.mappers.UserMapperDomainAndDTO;
 import com.todolistezoom.ezoom.domain.User;
 import com.todolistezoom.ezoom.services.AuthService.AuthService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -23,6 +24,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @ApiOperation(value = "Autheticaçao, necessário passar via header username:password")
     public ResponseEntity<String> authenticate(Authentication user){
         String token = authService.authenticate(user);
         if(token!=null){
@@ -33,6 +35,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
+    @ApiOperation(value = "Registra usuário")
     public ResponseEntity<Void> createUser(@RequestBody UserRequestDTO userRequestDTO){
         authService.createUser(userMapperDomainAndDTO.convertRequestToDomain(userRequestDTO));
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
