@@ -2,7 +2,7 @@
 
 Foi desenvolvido também a API com Autenticação básica e o CRUD das tarefas, feito com Java e Spring Boot,além disso foi feito o deploy via AWS, na aws utilizei o ec2 para subir a aplicação, além do RDS para banco de dados!
 
-## Decições técnicas
+## Decisões técnicas
 
 A arquitetura segue a arquitetura por camadas!
 - Adapter
